@@ -41,5 +41,14 @@ class PagesBloc extends Bloc<PagesEvent, PagesState> {
         fromSingUp: event.fromSingUp, email: event.email)));
     on<GoToTransactionMidtransPage>(
         (event, emit) => emit(OnTransactionMidtransPage(url: event.url)));
+    on<GoToEventPage>((event, emit) => emit(OnEventPage()));
+    on<GoToDataEventPage>((event, emit) => emit(OnDataEventPage()));
+    on<GoToTicketEventPage>((event, emit) => emit(OnTicketEventPage()));
+    on<GoToEventSertifikatPage>((event, emit) => emit(OnEventSertifikatPage()));
+    on<GoToTransactionEventPage>(
+        (event, emit) => emit(OnTransactionEventPage()));
+    on<GoToInfoEventPage>((event, emit) => emit(OnInfoEventPage()));
+    on<GoToDetailEventPage>(
+        (event, emit) => emit(OnDetailEventPage(event.idPromo)));
   }
 }

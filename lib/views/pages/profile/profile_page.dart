@@ -164,6 +164,21 @@ class _ProfilePageState extends State<ProfilePage> {
                           const SizedBox(height: 30),
                           _buttonList(
                               icon: Icon(
+                                Icons.event,
+                                color: whiteColor,
+                                size: 30,
+                              ),
+                              titel: 'Acara',
+                              color: Colors.blueAccent,
+                              onTap: () {
+                                navigation(context,
+                                    fromEvent: const GoToMainPage(
+                                        bottomNavBarIndex: 2),
+                                    toEvent: GoToEventPage());
+                              }),
+                          const SizedBox(height: 30),
+                          _buttonList(
+                              icon: Icon(
                                 Icons.account_circle,
                                 color: whiteColor,
                               ),

@@ -65,7 +65,7 @@ class TransactionPage extends StatelessWidget {
                                 invoice: transaction[index].invoice,
                                 purchaseDate: transaction[index].purchaseDate,
                                 statusTransaction:
-                                    transaction[index].cartStatus,
+                                    transaction[index].statusTransaction,
                                 cartStatus: transaction[index].cartStatus,
                                 totalPaymentFormat:
                                     transaction[index].totalPaymentFormat);
@@ -130,7 +130,13 @@ class TransactionPage extends StatelessWidget {
               children: [
                 Text('Status', style: (TextStyle(fontFamily: textMain))),
                 const SizedBox(width: 60),
-                Text(cartStatus, style: textBold),
+                Text(cartStatus,
+                    style: textBold.copyWith(
+                        color: (statusTransaction == '1')
+                            ? Colors.green
+                            : (statusTransaction == '7')
+                                ? Colors.blue
+                                : grayColor)),
               ],
             ),
             const SizedBox(height: 8),

@@ -145,3 +145,40 @@ class GoToVerificationEmailPage extends PagesEvent {
   @override
   List<Object> get props => [];
 }
+
+class GoToEventPage extends PagesEvent {
+  @override
+  List<Object> get props => [];
+}
+
+class GoToDataEventPage extends PagesEvent {
+  @override
+  List<Object> get props => [];
+}
+
+class GoToTicketEventPage extends PagesEvent {
+  @override
+  List<Object> get props => [];
+}
+
+class GoToEventSertifikatPage extends PagesEvent {
+  @override
+  List<Object> get props => [];
+}
+
+class GoToTransactionEventPage extends PagesEvent {
+  @override
+  List<Object> get props => [];
+}
+
+class GoToInfoEventPage extends PagesEvent {
+  @override
+  List<Object> get props => [];
+}
+
+class GoToDetailEventPage extends PagesEvent {
+  final String idPromo;
+  const GoToDetailEventPage(this.idPromo);
+  @override
+  List<Object> get props => [idPromo];
+}

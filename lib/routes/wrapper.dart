@@ -107,7 +107,21 @@ class Wrapper extends StatelessWidget {
                                                                               email: pageSate.email))
                                                                           : (pageSate is OnTransactionMidtransPage)
                                                                               ? (TransactionMidtransPage(url: pageSate.url))
-                                                                              : MainPage(bottomNavBarIndex: (pageSate as OnMainPage).bottomNavBarIndex)
+                                                                              : (pageSate is OnEventPage)
+                                                                                  ? (const EventPage())
+                                                                                  : (pageSate is OnDataEventPage)
+                                                                                      ? (const DataEventPage())
+                                                                                      : (pageSate is OnTicketEventPage)
+                                                                                          ? (const TicketPage())
+                                                                                          : (pageSate is OnEventSertifikatPage)
+                                                                                              ? (const EventSertifikatPage())
+                                                                                              : (pageSate is OnTransactionEventPage)
+                                                                                                  ? (const TransactionEventPage())
+                                                                                                  : (pageSate is OnInfoEventPage)
+                                                                                                      ? (const InfoEventPage())
+                                                                                                      : (pageSate is OnDetailEventPage)
+                                                                                                          ? (DetailEventPage(pageSate.idPromo))
+                                                                                                          : MainPage(bottomNavBarIndex: (pageSate as OnMainPage).bottomNavBarIndex)
               : const NoConnectionPage();
         },
       );

@@ -14,6 +14,7 @@ part 'transaction/transaction_service.dart';
 part 'transaction/payment_method_service.dart';
 part 'transaction/midtrans_service.dart';
 part 'transaction/add_payment_service.dart';
+part 'event/event_service.dart';
 part 'banner_service.dart';
 part 'ads_services.dart';
 part 'customer_service_service.dart';

@@ -146,3 +146,40 @@ class OnAdsDetailPage extends PagesState {
   @override
   List<Object> get props => [idAds, tag];
 }
+
+class OnEventPage extends PagesState {
+  @override
+  List<Object> get props => [];
+}
+
+class OnDataEventPage extends PagesState {
+  @override
+  List<Object> get props => [];
+}
+
+class OnTicketEventPage extends PagesState {
+  @override
+  List<Object> get props => [];
+}
+
+class OnEventSertifikatPage extends PagesState {
+  @override
+  List<Object> get props => [];
+}
+
+class OnTransactionEventPage extends PagesState {
+  @override
+  List<Object> get props => [];
+}
+
+class OnInfoEventPage extends PagesState {
+  @override
+  List<Object> get props => [];
+}
+
+class OnDetailEventPage extends PagesState {
+  final String idPromo;
+  const OnDetailEventPage(this.idPromo);
+  @override
+  List<Object> get props => [idPromo];
+}
