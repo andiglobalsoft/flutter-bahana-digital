@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
     }
 
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+    versionInfo();
 
     return MultiBlocProvider(
         providers: [

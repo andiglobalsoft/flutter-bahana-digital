@@ -20,7 +20,7 @@ Stream<int> generateNumbers = (() async* {
 })();
 
 //Versi App
-String versiApp = '1.0.3';
+String versiApp = '';
 
 //shareLinkProduk
 String shareLinkProduk = 'https://dev.andipublisher.com/produk/detail/';
