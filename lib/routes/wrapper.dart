@@ -92,7 +92,11 @@ class Wrapper extends StatelessWidget {
                                                                   ? (AddPaymentPage(
                                                                       addPaymentModel:
                                                                           pageSate
-                                                                              .addPaymentModel))
+                                                                              .addPaymentModel,
+                                                                      isEvent:
+                                                                          pageSate
+                                                                              .isEvent,
+                                                                    ))
                                                                   : (pageSate
                                                                           is OnAdsDetailPage)
                                                                       ? (AdsDetailPage(
@@ -121,7 +125,11 @@ class Wrapper extends StatelessWidget {
                                                                                                       ? (const InfoEventPage())
                                                                                                       : (pageSate is OnDetailEventPage)
                                                                                                           ? (DetailEventPage(pageSate.idPromo))
-                                                                                                          : MainPage(bottomNavBarIndex: (pageSate as OnMainPage).bottomNavBarIndex)
+                                                                                                          : (pageSate is OnPaymentEventPage)
+                                                                                                              ? (PaymentEventPage(idTransaksi: pageSate.idTransaksi, noInvoice: pageSate.noInvoice))
+                                                                                                              : (pageSate is OnDetailTransaksiEventPage)
+                                                                                                                  ? (DetailTransaksiEventPage(idTransaksi: pageSate.idTransaksi))
+                                                                                                                  : MainPage(bottomNavBarIndex: (pageSate as OnMainPage).bottomNavBarIndex)
               : const NoConnectionPage();
         },
       );

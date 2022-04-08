@@ -113,6 +113,7 @@ class TransactionPage extends StatelessWidget {
         child: Column(
           children: [
             Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
@@ -121,7 +122,8 @@ class TransactionPage extends StatelessWidget {
                 ),
                 Text(
                   purchaseDate,
-                  style: TextStyle(fontFamily: textMain, color: grayColor),
+                  style: TextStyle(
+                      fontFamily: textMain, fontSize: 12, color: grayColor),
                 )
               ],
             ),

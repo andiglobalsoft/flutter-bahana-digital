@@ -63,6 +63,7 @@ part 'data_event/data_event.dart';
 part 'data_event/detail_event.dart';
 part 'event_sertifikat/event_sertifikat_page.dart';
 part 'transaction_event/transaction_event_page.dart';
+part 'transaction_event/detail_transaction_event_page.dart';
 part 'info/info_page.dart';
 part 'main_page.dart';
 part 'no_connection_page/no_connection_page.dart';

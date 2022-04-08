@@ -63,7 +63,6 @@ class EventService {
   //add transaksi Event
   static Future<AddTransaksiEventModel> addTransaksiEvent(String tag,
       {required String idPromo,
-      status,
       jumlahbayar,
       eventNamaTransaksi,
       http.Client? client}) async {
@@ -75,12 +74,12 @@ class EventService {
         'tag': tag,
         'id_user': idUser,
         'id_promo': idPromo,
-        'status': status,
+        'status': '3',
         'jumlahbayar': jumlahbayar,
         'event_nama_transaksi': eventNamaTransaksi
       });
 
-      log('tag $tag, id_user $idUser, id_promo $idPromo, status $status, jumlahbayar $jumlahbayar, event_nama_transaksi $eventNamaTransaksi');
+      log('tag $tag, id_user $idUser, id_promo $idPromo, status "3", jumlahbayar $jumlahbayar, event_nama_transaksi $eventNamaTransaksi');
       log('Response  add transaksi Event : ' + response.body);
 
       var data = jsonDecode(response.body);
@@ -143,15 +142,39 @@ class EventService {
     }
   }
 
-//list transaksi
+  //listevent_transaction
+  static Future<List<TransactionEventModel>> getListEventTransaksi(String tag,
+      {required String idTransaksi, http.Client? client}) async {
+    String url = apiHttp + 'ba_event.php';
+    client ??= http.Client();
+
+    try {
+      http.Response response = await client.post(Uri.parse(url),
+          body: {'tag': tag, 'id_user': idUser, 'id_transaksi': idTransaksi});
+
+      log('tag $tag, id_user $idUser, id_transaksi $idTransaksi');
+      log('Response  Tiket Event : ' + response.body);
+
+      var data = jsonDecode(response.body);
+
+      return List<TransactionEventModel>.from(
+          data.map((e) => TransactionEventModel.fromJson(e)));
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  //list transaksi
   static Future<List<ListTransaksiModel>> getListTransaksi(String tag,
       {http.Client? client}) async {
     String url = apiHttp + 'ba_event.php';
     client ??= http.Client();
 
     try {
-      http.Response response = await client
-          .post(Uri.parse(url), body: {'tag': tag, 'id_user': idUser});
+      http.Response response = await client.post(Uri.parse(url), body: {
+        'tag': tag,
+        'id_user': idUser,
+      });
 
       log('tag $tag, id_user $idUser');
       log('Response  Tiket Event : ' + response.body);
@@ -160,6 +183,27 @@ class EventService {
 
       return List<ListTransaksiModel>.from(
           data.map((e) => ListTransaksiModel.fromJson(e)));
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  //list detail transaksi
+  static Future<ListDetailTransaksiModel> getListDetailTransaksi(String tag,
+      {String? idTransaksi = '', http.Client? client}) async {
+    String url = apiHttp + 'ba_event.php';
+    client ??= http.Client();
+
+    try {
+      http.Response response = await client.post(Uri.parse(url),
+          body: {'tag': tag, 'id_user': idUser, 'id_transaksi': idTransaksi});
+
+      log('tag $tag, id_user $idUser, id_transaksi $idTransaksi');
+      log('Response  Tiket Event : ' + response.body);
+
+      var data = jsonDecode(response.body);
+
+      return ListDetailTransaksiModel.fromJson(data);
     } catch (e) {
       throw Exception(e);
     }

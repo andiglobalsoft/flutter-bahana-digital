@@ -108,10 +108,12 @@ class GoToMorePage extends PagesEvent {
 
 class GoToAddPaymentPage extends PagesEvent {
   final AddPaymentModel addPaymentModel;
-  const GoToAddPaymentPage({required this.addPaymentModel});
+  final bool isEvent;
+  const GoToAddPaymentPage(
+      {required this.addPaymentModel, this.isEvent = false});
 
   @override
-  List<Object> get props => [addPaymentModel];
+  List<Object> get props => [addPaymentModel, isEvent];
 }
 
 class GoToProductDetailsPage extends PagesEvent {
@@ -181,4 +183,21 @@ class GoToDetailEventPage extends PagesEvent {
   const GoToDetailEventPage(this.idPromo);
   @override
   List<Object> get props => [idPromo];
+}
+
+class GoToPaymentEventPage extends PagesEvent {
+  final String idTransaksi;
+  final String noInvoice;
+  const GoToPaymentEventPage(
+      {required this.idTransaksi, required this.noInvoice});
+  @override
+  List<Object> get props => [idTransaksi, noInvoice];
+}
+
+class GoToDetailTransaksiEventPage extends PagesEvent {
+  final String idTransaksi;
+  const GoToDetailTransaksiEventPage({required this.idTransaksi});
+
+  @override
+  List<Object> get props => [idTransaksi];
 }

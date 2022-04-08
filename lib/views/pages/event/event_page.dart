@@ -5,91 +5,98 @@ class EventPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(children: [
-        //Background
-        Container(color: mainColor),
-        SafeArea(child: Container(color: backgroundPhoneColor)),
+    return WillPopScope(
+      onWillPop: () async {
+        navigationPop(context);
+        return false;
+      },
+      child: Scaffold(
+        body: Stack(children: [
+          //Background
+          Container(color: mainColor),
+          SafeArea(child: Container(color: backgroundPhoneColor)),
 
-        SafeArea(
-            child: ListView(
-          padding: const EdgeInsets.only(top: 100, left: 16),
-          children: [
-            _buttonList(
-              titel: 'Acara',
-              icon: const Icon(
-                Icons.event,
-                color: Colors.white,
+          SafeArea(
+              child: ListView(
+            padding: const EdgeInsets.only(top: 100, left: 16),
+            children: [
+              _buttonList(
+                titel: 'Acara',
+                icon: const Icon(
+                  Icons.event,
+                  color: Colors.white,
+                ),
+                color: Colors.teal,
+                onTap: () {
+                  navigation(context,
+                      fromEvent: GoToEventPage(), toEvent: GoToDataEventPage());
+                },
               ),
-              color: Colors.teal,
-              onTap: () {
-                navigation(context,
-                    fromEvent: GoToEventPage(), toEvent: GoToDataEventPage());
-              },
-            ),
-            const SizedBox(height: 12),
-            _buttonList(
-              titel: 'Tiket',
-              icon: const Icon(
-                Icons.discount_rounded,
-                color: Colors.white,
+              const SizedBox(height: 12),
+              _buttonList(
+                titel: 'Tiket',
+                icon: const Icon(
+                  Icons.discount_rounded,
+                  color: Colors.white,
+                ),
+                color: Colors.teal,
+                onTap: () {
+                  navigation(context,
+                      fromEvent: GoToEventPage(),
+                      toEvent: GoToTicketEventPage());
+                },
               ),
-              color: Colors.teal,
-              onTap: () {
-                navigation(context,
-                    fromEvent: GoToEventPage(), toEvent: GoToTicketEventPage());
-              },
-            ),
-            const SizedBox(height: 12),
-            _buttonList(
-              titel: 'Transaksi',
-              icon: const Icon(
-                Icons.compare_arrows_rounded,
-                color: Colors.white,
+              const SizedBox(height: 12),
+              _buttonList(
+                titel: 'Transaksi',
+                icon: const Icon(
+                  Icons.compare_arrows_rounded,
+                  color: Colors.white,
+                ),
+                color: Colors.teal,
+                onTap: () {
+                  navigation(context,
+                      fromEvent: GoToEventPage(),
+                      toEvent: GoToTransactionEventPage());
+                },
               ),
-              color: Colors.teal,
-              onTap: () {
-                navigation(context,
-                    fromEvent: GoToEventPage(),
-                    toEvent: GoToTransactionEventPage());
-              },
-            ),
-            const SizedBox(height: 12),
-            _buttonList(
-              titel: 'Sertifikat',
-              icon: const Icon(
-                Icons.document_scanner_outlined,
-                color: Colors.white,
+              const SizedBox(height: 12),
+              _buttonList(
+                titel: 'Sertifikat',
+                icon: const Icon(
+                  Icons.document_scanner_outlined,
+                  color: Colors.white,
+                ),
+                color: Colors.teal,
+                onTap: () {
+                  navigation(context,
+                      fromEvent: GoToEventPage(),
+                      toEvent: GoToEventSertifikatPage());
+                },
               ),
-              color: Colors.teal,
-              onTap: () {
-                navigation(context,
-                    fromEvent: GoToEventPage(),
-                    toEvent: GoToEventSertifikatPage());
-              },
-            ),
-            const SizedBox(height: 12),
-            _buttonList(
-              titel: 'Info',
-              icon: const Icon(
-                Icons.info_outline_rounded,
-                color: Colors.white,
-              ),
-              color: Colors.teal,
-              onTap: () {
-                navigation(context,
-                    fromEvent: GoToEventPage(), toEvent: GoToInfoEventPage());
-              },
-            ),
-          ],
-        )),
+              // const SizedBox(height: 12),
+              // _buttonList(
+              //   titel: 'Info',
+              //   icon: const Icon(
+              //     Icons.info_outline_rounded,
+              //     color: Colors.white,
+              //   ),
+              //   color: Colors.teal,
+              //   onTap: () {
+              //     navigation(context,
+              //         fromEvent: GoToEventPage(), toEvent: GoToInfoEventPage());
+              //   },
+              // ),
+            ],
+          )),
 
-        //header
-        SafeArea(
-          child: HeaderBackArrowandTitlePage('Acara',
-              onTap: () => navigationPop(context)),
-        )
-      ]),
+          //header
+          SafeArea(
+            child: HeaderBackArrowandTitlePage('Acara',
+                onTap: () => navigationPop(context)),
+          )
+        ]),
+      ),
     );
   }
 

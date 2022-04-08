@@ -147,6 +147,7 @@ class BaTransactionResult {
   final String? total;
   final String? idTransaction;
   final List<TransactionModel>? transaction;
+  final List<TransactionEventModel>? transactionEvent;
   final List<DetailTransactionProductModel>? detailTransactionProductModel;
   final DetailTransactionModel? detailTransactionModel;
   final String? message;
@@ -158,5 +159,6 @@ class BaTransactionResult {
       this.detailTransactionProductModel,
       this.detailTransactionModel,
       this.transaction,
+      this.transactionEvent,
       this.message});
 }

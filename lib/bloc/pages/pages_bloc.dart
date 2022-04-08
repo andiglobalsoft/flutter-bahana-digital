@@ -30,8 +30,8 @@ class PagesBloc extends Bloc<PagesEvent, PagesState> {
         noInvoice: event.noInvoice,
         idTransaction: event.idTransaction,
         totalPrice: event.totalPrice)));
-    on<GoToAddPaymentPage>((event, emit) =>
-        emit(OnAddPaymentPage(addPaymentModel: event.addPaymentModel)));
+    on<GoToAddPaymentPage>((event, emit) => emit(OnAddPaymentPage(
+        addPaymentModel: event.addPaymentModel, isEvent: event.isEvent)));
     on<GoToEditProfilePage>((event, emit) => emit(OnEditProfilePage(
         nameUser: event.nameUser,
         email: event.email,
@@ -50,5 +50,9 @@ class PagesBloc extends Bloc<PagesEvent, PagesState> {
     on<GoToInfoEventPage>((event, emit) => emit(OnInfoEventPage()));
     on<GoToDetailEventPage>(
         (event, emit) => emit(OnDetailEventPage(event.idPromo)));
+    on<GoToPaymentEventPage>((event, emit) => emit(OnPaymentEventPage(
+        idTransaksi: event.idTransaksi, noInvoice: event.noInvoice)));
+    on<GoToDetailTransaksiEventPage>((event, emit) =>
+        emit(OnDetailTransaksiEventPage(idTransaksi: event.idTransaksi)));
   }
 }

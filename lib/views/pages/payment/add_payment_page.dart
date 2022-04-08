@@ -2,7 +2,9 @@ part of '../pages.dart';
 
 class AddPaymentPage extends StatefulWidget {
   final AddPaymentModel addPaymentModel;
-  const AddPaymentPage({required this.addPaymentModel, Key? key})
+  final bool isEvent;
+  const AddPaymentPage(
+      {required this.addPaymentModel, this.isEvent = false, Key? key})
       : super(key: key);
 
   @override
@@ -134,14 +136,22 @@ class _AddPaymentPageState extends State<AddPaymentPage> {
                 log('url ' + navigationAction.request.url.toString());
                 if ((uri.toString())
                     .startsWith(apiHttp + 'payment_midtrans/finish.php')) {
-                  return navigation(context,
-                      fromEvent: const GoToMainPage(bottomNavBarIndex: 2),
-                      toEvent: GoToTransactionPage());
+                  if (widget.isEvent) {
+                    return navigation(context,
+                        fromEvent: const GoToMainPage(bottomNavBarIndex: 2),
+                        toEvent: GoToEventPage());
+                  } else {
+                    return navigation(context,
+                        fromEvent: const GoToMainPage(bottomNavBarIndex: 2),
+                        toEvent: GoToTransactionPage());
+                  }
                 } else if ((uri.toString())
                     .startsWith('https://app.midtrans.com')) {
                   return null;
+                } else if ((uri.toString())
+                    .startsWith('https://app.sandbox.midtrans.com')) {
+                  return null;
                 }
-
                 launch(uri.toString());
 
                 // if ((uri.toString()).startsWith('gojek://')) {

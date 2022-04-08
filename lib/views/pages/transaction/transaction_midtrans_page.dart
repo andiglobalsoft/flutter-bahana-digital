@@ -2,7 +2,9 @@ part of '../pages.dart';
 
 class TransactionMidtransPage extends StatefulWidget {
   final String url;
-  const TransactionMidtransPage({required this.url, Key? key})
+  final bool isEvent;
+  const TransactionMidtransPage(
+      {required this.url, this.isEvent = false, Key? key})
       : super(key: key);
 
   @override
@@ -90,11 +92,17 @@ class _TransactionMidtransPageState extends State<TransactionMidtransPage> {
                 log('url ' + navigationAction.request.url.toString());
                 if ((uri.toString())
                     .startsWith(apiHttp + 'payment_midtrans/finish.php')) {
-                  return navigation(context,
-                      fromEvent: const GoToMainPage(bottomNavBarIndex: 2),
-                      toEvent: GoToTransactionPage());
+                  if (widget.isEvent) {
+                  } else {
+                    return navigation(context,
+                        fromEvent: const GoToMainPage(bottomNavBarIndex: 2),
+                        toEvent: GoToTransactionPage());
+                  }
                 } else if ((uri.toString())
                     .startsWith('https://app.midtrans.com')) {
+                  return null;
+                } else if ((uri.toString())
+                    .startsWith('https://app.sandbox.midtrans.com')) {
                   return null;
                 }
 

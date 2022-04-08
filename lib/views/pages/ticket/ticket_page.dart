@@ -5,54 +5,61 @@ class TicketPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(children: [
-        //Background
-        Container(color: mainColor),
-        SafeArea(child: Container(color: backgroundPhoneColor)),
+    return WillPopScope(
+      onWillPop: () async {
+        navigationPop(context);
+        return false;
+      },
+      child: Scaffold(
+        body: Stack(children: [
+          //Background
+          Container(color: mainColor),
+          SafeArea(child: Container(color: backgroundPhoneColor)),
 
-        //Content
-        SafeArea(
-            child: Padding(
-          padding: const EdgeInsets.only(top: 80),
-          child: FutureBuilder(
-            future: EventService.getTiketEvent('listsudahdibeli'),
-            builder: (_, snapshot) {
-              if (snapshot.hasData) {
-                List<TiketEventModel> tiketEventModel =
-                    snapshot.data as List<TiketEventModel>;
+          //Content
+          SafeArea(
+              child: Padding(
+            padding: const EdgeInsets.only(top: 80, left: 16, right: 16),
+            child: FutureBuilder(
+              future: EventService.getTiketEvent('listsudahdibeli'),
+              builder: (_, snapshot) {
+                if (snapshot.hasData) {
+                  List<TiketEventModel> tiketEventModel =
+                      snapshot.data as List<TiketEventModel>;
 
-                return ListView.builder(
-                  itemCount: tiketEventModel.length,
-                  itemBuilder: (context, index) {
-                    return cardTiket(
-                        img: tiketEventModel[index].filePromo,
-                        namaPromo: tiketEventModel[index].namaPromo,
-                        tanggalAcaraEvent:
-                            tiketEventModel[index].tanggalAcaraEvent,
-                        deskripsiPromo: tiketEventModel[index].deskripsiPromo,
-                        ketEvent: tiketEventModel[index].ketEvent,
-                        linkPromo: tiketEventModel[index].linkPromo);
-                  },
-                );
-              } else {
-                if (snapshot.hasError) {
-                  return Center(
-                    child: Text('Belum Mempunyai Tiket Acara', style: textGray),
+                  return ListView.builder(
+                    itemCount: tiketEventModel.length,
+                    itemBuilder: (context, index) {
+                      return cardTiket(
+                          img: tiketEventModel[index].filePromo,
+                          namaPromo: tiketEventModel[index].namaPromo,
+                          tanggalAcaraEvent:
+                              tiketEventModel[index].tanggalAcaraEvent,
+                          deskripsiPromo: tiketEventModel[index].deskripsiPromo,
+                          ketEvent: tiketEventModel[index].ketEvent,
+                          linkPromo: tiketEventModel[index].linkPromo);
+                    },
                   );
+                } else {
+                  if (snapshot.hasError) {
+                    return Center(
+                      child:
+                          Text('Belum Mempunyai Tiket Acara', style: textGray),
+                    );
+                  }
+                  return const Center(child: CircularProgressIndicator());
                 }
-                return const Center(child: CircularProgressIndicator());
-              }
-            },
-          ),
-        )),
+              },
+            ),
+          )),
 
-        //header
-        SafeArea(
-          child: HeaderBackArrowandTitlePage('Tiket',
-              onTap: () => navigationPop(context)),
-        )
-      ]),
+          //header
+          SafeArea(
+            child: HeaderBackArrowandTitlePage('Tiket',
+                onTap: () => navigationPop(context)),
+          )
+        ]),
+      ),
     );
   }
 
@@ -74,19 +81,20 @@ class TicketPage extends StatelessWidget {
           ClipPath(
             clipper: ClipPathTiketTop(),
             child: Container(
-              height: 130,
-              width: 300,
+              height: 114,
+              width: double.infinity,
               decoration: BoxDecoration(
                 color: grayColor,
                 borderRadius: BorderRadius.circular(12),
-                image: DecorationImage(image: NetworkImage(img)),
+                image: DecorationImage(
+                    image: NetworkImage(img), fit: BoxFit.cover),
               ),
             ),
           ),
           ClipPath(
             clipper: ClipPathTiketBottom(),
             child: Container(
-                width: 300,
+                width: double.infinity,
                 margin: const EdgeInsets.only(bottom: 12),
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
